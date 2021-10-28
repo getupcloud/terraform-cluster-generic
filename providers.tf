@@ -19,10 +19,6 @@ terraform {
       version = "~> 2"
     }
 
-    aws = {
-      version = "~> 3.56.0"
-    }
-
     kubernetes = {
       version = "~> 2.3.2"
     }
@@ -35,15 +31,10 @@ provider "shell" {
 }
 
 provider "kubectl" {
-  load_config_file       = false
-  host                   = local.api_endpoint
-  cluster_ca_certificate = local.certificate_authority_data
-  token                  = local.token
-  apply_retry_count      = 2
+  config_path       = var.kubeconfig_filename
+  apply_retry_count = 2
 }
 
 provider "kubernetes" {
-  host                   = local.api_endpoint
-  cluster_ca_certificate = local.certificate_authority_data
-  token                  = local.token
+  config_path = var.kubeconfig_filename
 }

@@ -3,11 +3,6 @@ variable "name" {
   type        = string
 }
 
-variable "api_endpoint" {
-  description = "Kubernetes API endpoint"
-  type        = string
-}
-
 variable "kubeconfig_filename" {
   description = "Kubeconfig path"
   default     = "~/.kube/config"
