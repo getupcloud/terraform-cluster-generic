@@ -31,3 +31,32 @@ variable "manifests_path" {
   type        = string
   default     = ""
 }
+
+variable "cronitor_api_key" {
+  description = "Cronitor API key. Leave empty to destroy"
+  type        = string
+  default     = ""
+}
+
+variable "cronitor_pagerduty_key" {
+  description = "Cronitor PagerDuty key"
+  type        = string
+  default     = ""
+}
+
+variable "customer_name" {
+  description = "Customer name (Informative only)"
+  type        = string
+}
+
+variable "suffix" {
+  description = "Customer name suffix (Informative only)"
+  type        = string
+  default     = ""
+}
+
+variable "api_endpoint" {
+  description = "Kubernetes API endpoint (Informative only)"
+  type        = string
+  default     = ""
+}
