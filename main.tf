@@ -16,8 +16,8 @@ module "cronitor" {
   cluster_name  = var.name
   customer_name = var.customer_name
   suffix        = "generic"
+  tags          = var.cronitor_tags
   api_key       = var.cronitor_api_key
   pagerduty_key = var.cronitor_pagerduty_key
   api_endpoint  = var.api_endpoint
-  tags          = var.cronitor_tags
 }
