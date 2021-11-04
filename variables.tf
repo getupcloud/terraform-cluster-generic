@@ -5,12 +5,13 @@ variable "name" {
 
 variable "kubeconfig_filename" {
   description = "Kubeconfig path"
-  default     = "~/.kube/config"
   type        = string
+  default     = "~/.kube/config"
 }
 
 variable "get_kubeconfig_command" {
   description = "Command to create/update kubeconfig"
+  type        = string
   default     = "true"
 }
 
@@ -32,6 +33,17 @@ variable "manifests_path" {
   default     = ""
 }
 
+variable "customer_name" {
+  description = "Customer name (Informative only)"
+  type        = string
+}
+
+variable "api_endpoint" {
+  description = "Kubernetes API endpoint (Informative only)"
+  type        = string
+  default     = ""
+}
+
 variable "cronitor_api_key" {
   description = "Cronitor API key. Leave empty to destroy"
   type        = string
@@ -44,19 +56,8 @@ variable "cronitor_pagerduty_key" {
   default     = ""
 }
 
-variable "customer_name" {
-  description = "Customer name (Informative only)"
-  type        = string
-}
-
-variable "suffix" {
-  description = "Customer name suffix (Informative only)"
-  type        = string
-  default     = ""
-}
-
-variable "api_endpoint" {
-  description = "Kubernetes API endpoint (Informative only)"
-  type        = string
-  default     = ""
+variable "cronitor_tags" {
+  description = "Monitor tags (Informative only)"
+  type        = list(string)
+  default     = []
 }
