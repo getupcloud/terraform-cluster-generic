@@ -8,9 +8,9 @@ module "flux" {
   git_repo       = var.flux_git_repo
   manifests_path = "./clusters/${var.name}/generic/manifests"
   wait           = var.flux_wait
-  cluster_template_vars = {
+  manifests_template_vars = merge({
     cronitor_id : module.cronitor.cronitor_id
-  }
+  }, var.manifests_template_vars)
 }
 
 module "cronitor" {
@@ -19,7 +19,7 @@ module "cronitor" {
   cluster_name  = var.name
   customer_name = var.customer_name
   suffix        = "generic"
-  tags          = var.cronitor_tags
+  tags          = []
   api_key       = var.cronitor_api_key
   pagerduty_key = var.cronitor_pagerduty_key
   api_endpoint  = var.api_endpoint

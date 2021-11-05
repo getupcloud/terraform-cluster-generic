@@ -56,8 +56,10 @@ variable "cronitor_pagerduty_key" {
   default     = ""
 }
 
-variable "cronitor_tags" {
-  description = "Monitor tags (Informative only)"
-  type        = list(string)
-  default     = []
+variable "manifests_template_vars" {
+  description = "Template vars for use by cluster manifests"
+  type        = any
+  default = {
+    alertmanager_pagerduty_key : ""
+  }
 }
