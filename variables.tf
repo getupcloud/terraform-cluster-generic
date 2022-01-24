@@ -1,5 +1,16 @@
-variable "name" {
+variable "cluster_name" {
   description = "Cluster name"
+  type        = string
+}
+
+variable "cluster_sla" {
+  description = "Cluster SLA"
+  type        = string
+  default     = "none"
+}
+
+variable "customer_name" {
+  description = "Customer name (Informative only)"
   type        = string
 }
 
@@ -31,11 +42,6 @@ variable "manifests_path" {
   description = "Manifests dir inside GitRepository"
   type        = string
   default     = ""
-}
-
-variable "customer_name" {
-  description = "Customer name (Informative only)"
-  type        = string
 }
 
 variable "api_endpoint" {
