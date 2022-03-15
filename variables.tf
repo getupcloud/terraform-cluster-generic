@@ -14,6 +14,18 @@ variable "customer_name" {
   type        = string
 }
 
+variable "region" {
+  description = "Cluster Region"
+  type        = string
+  default     = "unknown"
+}
+
+variable "use_kubeconfig" {
+  description = "Should kubernetes/kubectl providers use local kubeconfig or credentials from cloud module"
+  type        = bool
+  default     = false
+}
+
 variable "kubeconfig_filename" {
   description = "Kubeconfig path"
   type        = string
@@ -74,4 +86,10 @@ variable "manifests_template_vars" {
   default = {
     alertmanager_pagerduty_key : ""
   }
+}
+
+variable "teleport_auth_token" {
+  description = "Teleport Agent auth token"
+  type        = string
+  default     = ""
 }
