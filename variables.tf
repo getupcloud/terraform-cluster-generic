@@ -38,6 +38,30 @@ variable "get_kubeconfig_command" {
   default     = "true"
 }
 
+variable "kubeconfig_cluster_ca_certificate_data" {
+  description = "Kubeconfig Cluster CA Certificate"
+  type        = string
+  default     = null
+}
+
+variable "kubeconfig_token" {
+  description = "Kubeconfig Auth Token"
+  type        = string
+  default     = null
+}
+
+variable "kubeconfig_client_certificate_data" {
+  description = "Kubeconfig Client Certificate"
+  type        = string
+  default     = null
+}
+
+variable "kubeconfig_client_key_data" {
+  description = "Kubeconfig Client Key"
+  type        = string
+  default     = null
+}
+
 variable "flux_git_repo" {
   description = "GitRepository URL."
   type        = string
