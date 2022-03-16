@@ -38,26 +38,26 @@ variable "get_kubeconfig_command" {
   default     = "true"
 }
 
-variable "kubeconfig_cluster_ca_certificate_data" {
+variable "kubeconfig_cluster_certificate_authority_data" {
   description = "Kubeconfig Cluster CA Certificate"
   type        = string
   default     = null
 }
 
-variable "kubeconfig_token" {
-  description = "Kubeconfig Auth Token"
-  type        = string
-  default     = null
-}
-
 variable "kubeconfig_client_certificate_data" {
-  description = "Kubeconfig Client Certificate"
+  description = "Kubeconfig Cluster Client Certificate Data"
   type        = string
   default     = null
 }
 
 variable "kubeconfig_client_key_data" {
-  description = "Kubeconfig Client Key"
+  description = "Kubeconfig Cluster Client Certificate Key Data"
+  type        = string
+  default     = null
+}
+
+variable "kubeconfig_client_token" {
+  description = "Kubeconfig Client Auth Token"
   type        = string
   default     = null
 }
