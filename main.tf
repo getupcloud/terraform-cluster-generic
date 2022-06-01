@@ -14,12 +14,13 @@ module "teleport-agent" {
 }
 
 module "flux" {
-  source = "github.com/getupcloud/terraform-module-flux?ref=v1.6"
+  source = "github.com/getupcloud/terraform-module-flux?ref=v1.8"
 
   git_repo       = var.flux_git_repo
   manifests_path = "./clusters/${var.cluster_name}/generic/manifests"
   wait           = var.flux_wait
   flux_version   = var.flux_version
+  install_on_okd = var.install_on_okd
 
   manifests_template_vars = merge(
     {

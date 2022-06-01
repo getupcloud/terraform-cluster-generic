@@ -117,3 +117,9 @@ variable "teleport_auth_token" {
   type        = string
   default     = ""
 }
+
+variable "install_on_okd" {
+  description = "Apply all required patches to install on OKD (Openshift)"
+  type        = bool
+  default     = false
+}
