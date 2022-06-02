@@ -9,7 +9,7 @@ module "teleport-agent" {
   cluster_name     = var.cluster_name
   customer_name    = var.customer_name
   cluster_sla      = var.cluster_sla
-  cluster_provider = "generic"
+  cluster_provider = var.cluster_type
   cluster_region   = var.region
 }
 
@@ -17,7 +17,7 @@ module "flux" {
   source = "github.com/getupcloud/terraform-module-flux?ref=v1.9"
 
   git_repo       = var.flux_git_repo
-  manifests_path = "./clusters/${var.cluster_name}/generic/manifests"
+  manifests_path = "./clusters/${var.cluster_name}/${var.cluster_type}/manifests"
   wait           = var.flux_wait
   flux_version   = var.flux_version
   install_on_okd = var.install_on_okd
@@ -39,7 +39,7 @@ module "cronitor" {
   cluster_name  = var.cluster_name
   customer_name = var.customer_name
   cluster_sla   = var.cluster_sla
-  suffix        = "generic"
+  suffix        = var.cluster_type
   tags          = []
   api_key       = var.cronitor_api_key
   pagerduty_key = var.cronitor_pagerduty_key

@@ -3,6 +3,12 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "cluster_type" {
+  description = "Overrides cluster type"
+  type        = string
+  default     = "generic"
+}
+
 variable "cluster_sla" {
   description = "Cluster SLA"
   type        = string
