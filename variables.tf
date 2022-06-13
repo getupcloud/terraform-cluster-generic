@@ -129,3 +129,25 @@ variable "install_on_okd" {
   type        = bool
   default     = false
 }
+
+variable "generic_modules" {
+  description = "Configure generic modules to install"
+  type        = any
+  default     = {}
+}
+
+variable "generic_modules_defaults" {
+  description = "Configure generic modules to install (defaults)"
+  type = object({
+    linkerd = object({ enabled = bool })
+  })
+
+  default = {
+    linkerd = {
+      enabled = false
+    }
+    linkerd-cni = {
+      enabled = false
+    }
+  }
+}

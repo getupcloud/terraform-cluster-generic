@@ -8,4 +8,7 @@ locals {
 
   suffix = random_string.suffix.result
   secret = random_string.secret.result
+
+  generic_modules = merge(var.generic_modules_defaults, var.generic_modules)
+  linkerd_config  = try(local.generic_modules.linkerd.enabled, false) ? module.linkerd[0].linkerd_config : {}
 }
