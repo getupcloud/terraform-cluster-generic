@@ -11,6 +11,6 @@ locals {
 
   generic_modules = merge(var.generic_modules_defaults, var.generic_modules)
   generic_modules_output = {
-    linkerd : local.generic_modules.linkerd.enabled ? module.linkerd[0] : {}
+    linkerd : local.generic_modules.linkerd.enabled ? module.linkerd[0].config : {}
   }
 }
