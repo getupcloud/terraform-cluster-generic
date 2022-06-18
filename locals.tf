@@ -10,5 +10,7 @@ locals {
   secret = random_string.secret.result
 
   generic_modules = merge(var.generic_modules_defaults, var.generic_modules)
-  linkerd_config  = try(local.generic_modules.linkerd.enabled, false) ? module.linkerd[0].linkerd_config : {}
+  generic_modules_output = {
+    linkerd : local.generic_modules.linkerd.enabled ? module.linkerd[0] : {}
+  }
 }
