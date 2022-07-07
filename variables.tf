@@ -98,16 +98,27 @@ variable "api_endpoint" {
   default     = ""
 }
 
-variable "cronitor_api_key" {
-  description = "Cronitor API key. Leave empty to destroy"
-  type        = string
-  default     = ""
+variable "cronitor_enabled" {
+  description = "Creates and enables Cronitor monitor."
+  type        = bool
+  default     = false
 }
-
 variable "cronitor_pagerduty_key" {
   description = "Cronitor PagerDuty key"
   type        = string
   default     = ""
+}
+
+variable "opsgenie_enabled" {
+  description = "Creates and enables Opsgenie integration."
+  type        = bool
+  default     = false
+}
+
+variable "opsgenie_team_name" {
+  description = "Opsgenie Owner team name of the integration."
+  type        = string
+  default     = "Operations"
 }
 
 variable "manifests_template_vars" {
@@ -137,17 +148,40 @@ variable "generic_modules" {
 }
 
 variable "generic_modules_defaults" {
-  description = "Configure generic modules to install (defaults)"
+  description = "Configure modules to install (defaults)"
   type = object({
-    linkerd = object({ enabled = bool })
+    linkerd = object({
+      enabled : bool
+      nodeSelector : any
+    })
+    linkerd-cni = object({
+      enabled : bool
+      nodeSelector : any
+    })
+    linkerd-viz = object({
+      enabled : bool
+      nodeSelector : any
+    })
   })
 
   default = {
-    linkerd = {
-      enabled = false
+    linkerd : {
+      enabled : false
+      nodeSelector : {
+        role : "infra"
+      }
     }
-    linkerd-cni = {
-      enabled = false
+    linkerd-viz : {
+      enabled : false
+      nodeSelector : {
+        role : "infra"
+      }
+    }
+    linkerd-cni : {
+      enabled : false
+      nodeSelector : {
+        role : "infra"
+      }
     }
   }
 }
