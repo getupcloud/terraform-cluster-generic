@@ -41,19 +41,21 @@ module "flux" {
 }
 
 module "cronitor" {
-  source = "github.com/getupcloud/terraform-module-cronitor?ref=v1.3"
+  source = "github.com/getupcloud/terraform-module-cronitor?ref=v1.4"
 
-  cluster_name  = var.cluster_name
-  customer_name = var.customer_name
-  cluster_sla   = var.cluster_sla
-  suffix        = var.cluster_type
-  tags          = []
-  pagerduty_key = var.cronitor_pagerduty_key
-  api_endpoint  = var.api_endpoint
+  api_endpoint      = var.api_endpoint
+  cronitor_enabled  = var.cronitor_enabled
+  cluster_name      = var.cluster_name
+  cluster_sla       = var.cluster_sla
+  customer_name     = var.customer_name
+  suffix            = var.cluster_type
+  tags              = []
+  pagerduty_key     = var.cronitor_pagerduty_key
+  notification_list = var.cronitor_notification_list
 }
 
 module "opsgenie" {
-  source = "github.com/getupcloud/terraform-module-opsgenie?ref=main"
+  source = "github.com/getupcloud/terraform-module-opsgenie?ref=v1.2"
 
   opsgenie_enabled = var.opsgenie_enabled
   customer_name    = var.customer_name
