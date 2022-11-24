@@ -1,4 +1,7 @@
-module "linkerd" {
-  count  = try(local.generic_modules.linkerd.enabled, false) ? 1 : 0
-  source = "github.com/getupcloud/terraform-module-linkerd?ref=v0.6"
+# Must register all modules in locals.tf
+
+resource "local_file" "debug-modules" {
+  count    = var.dump_debug ? 1 : 0
+  filename = ".debug-generic-modules.json"
+  content  = jsonencode(local.modules)
 }

@@ -9,8 +9,22 @@ locals {
   suffix = random_string.suffix.result
   secret = random_string.secret.result
 
-  generic_modules = merge(var.generic_modules_defaults, var.generic_modules)
-  generic_modules_output = {
-    linkerd : local.generic_modules.linkerd.enabled ? module.linkerd[0].config : {}
+  modules_result = {
+    for name, config in local.modules : name => merge(config, {
+      output : config.enabled ? lookup(local.register_modules, name, try(config.output, tomap({}))) : tomap({})
+    })
   }
+
+  manifests_template_vars = merge(
+    var.manifests_template_vars,
+    {
+      alertmanager_cronitor_id : try(module.cronitor.cronitor_id, "")
+      alertmanager_opsgenie_integration_api_key : try(module.opsgenie.api_key, "")
+      secret : random_string.secret.result
+      suffix : random_string.suffix.result
+      modules : local.modules_result
+    },
+    module.teleport-agent.teleport_agent_config,
+    { for k, v in var.manifests_template_vars : k => v if k != "modules" }
+  )
 }
