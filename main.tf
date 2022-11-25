@@ -16,16 +16,17 @@ module "teleport-agent" {
 module "flux" {
   source = "github.com/getupcloud/terraform-module-flux?ref=v2.0.0-beta4"
 
-  git_repo       = var.flux_git_repo
-  manifests_path = "./clusters/${var.cluster_name}/${var.cluster_type}/manifests"
-  wait           = var.flux_wait
-  flux_version   = var.flux_version
-  install_on_okd = var.install_on_okd
+  git_repo                = var.flux_git_repo
+  manifests_path          = "./clusters/${var.cluster_name}/${var.cluster_type}/manifests"
+  wait                    = var.flux_wait
+  flux_version            = var.flux_version
+  install_on_okd          = var.install_on_okd
   manifests_template_vars = local.manifests_template_vars
   debug                   = var.dump_debug
 
   depends_on = [
-    shell_script.pre_create
+    # generic clusters have no pre_create scripts because they already exists at this point.
+    shell_script.post_create
   ]
 }
 
@@ -50,4 +51,3 @@ module "opsgenie" {
   customer_name    = var.customer_name
   owner_team_name  = var.opsgenie_team_name
 }
-
