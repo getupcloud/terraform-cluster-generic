@@ -20,7 +20,6 @@ variable "api_endpoint" {
 }
 
 variable "region" {
-
   description = "Cluster Region"
   type        = string
   default     = "unknown"
@@ -67,4 +66,3 @@ variable "kubeconfig_cluster_certificate_authority_data" {
   type        = string
   default     = null
 }
-
