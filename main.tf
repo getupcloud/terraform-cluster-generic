@@ -23,11 +23,6 @@ module "flux" {
   install_on_okd          = var.install_on_okd
   manifests_template_vars = local.manifests_template_vars
   debug                   = var.dump_debug
-
-  depends_on = [
-    # generic clusters have no pre_create scripts because they already exists at this point.
-    shell_script.post_create
-  ]
 }
 
 module "cronitor" {
