@@ -5,3 +5,28 @@ resource "local_file" "debug-modules" {
   filename = ".debug-generic-modules.json"
   content  = jsonencode(local.modules)
 }
+
+module "cert-manager" {
+  count  = local.modules.cert-manager.enabled ? 1 : 0
+  source = "github.com/getupcloud/terraform-module-cert-manager?ref=v2.0.0-alpha1"
+
+  cluster_name  = var.cluster_name
+  customer_name = var.customer_name
+  provider_name = var.cluster_provider
+  provider_aws = (var.cluster_provider == "aws") ? {
+    hosted_zone_ids : local.modules.cert-manager.hosted_zone_ids
+  } : null
+}
+
+module "velero" {
+  count  = local.modules.velero.enabled ? 1 : 0
+  source = "github.com/getupcloud/terraform-module-velero?ref=v2.0.0-alpha1"
+
+  cluster_name            = module.cluster.cluster_id
+  customer_name           = var.customer_name
+  provider                = var.cluster_provider
+  provider_aws = {
+    bucket_name = local.modules.velero.bucket_name
+  }
+}
+
