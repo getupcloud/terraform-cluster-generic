@@ -33,7 +33,7 @@ variable "modules_defaults" {
     }
     velero = {
       enabled     = false
-      bucket_name = null
+      bucket_name = ""
     }
   }
 }
@@ -51,8 +51,8 @@ locals {
       domain_filters  = try(var.modules.external-dns.domain_filters, var.modules_defaults.external-dns.domain_filters)
     }
     velero = {
-      enabled         = try(var.modules.velero.enabled, var.modules_defaults.cert-manager.enabled)
-      hosted_zone_ids = try(var.modules.veloro.bucket_name, var.modules_defaults.velero.bucket_name)
+      enabled     = try(var.modules.velero.enabled, var.modules_defaults.cert-manager.enabled)
+      bucket_name = try(var.modules.velero.bucket_name, var.modules_defaults.velero.bucket_name)
     }
   })
 

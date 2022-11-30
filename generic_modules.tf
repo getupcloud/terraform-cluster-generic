@@ -25,8 +25,7 @@ module "velero" {
   cluster_name  = var.cluster_name
   customer_name = var.customer_name
   provider_name = var.cluster_provider
-  provider_aws = {
+  provider_aws = (var.cluster_provider == "aws") ? {
     bucket_name = local.modules.velero.bucket_name
-  }
+  } : null
 }
-
