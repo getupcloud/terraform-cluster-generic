@@ -56,5 +56,9 @@ locals {
     }
   })
 
-  register_modules = {}
+  register_modules = {
+    cert-manager : local.modules.cert-manager.enabled ? module.cert-manager[0] : {}
+    # external-dns : local.modules.external-dns.enabled ? module.external-dns[0] : {}
+    velero : local.modules.velero.enabled ? module.velero[0] : {}
+  }
 }
