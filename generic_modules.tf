@@ -8,7 +8,7 @@ resource "local_file" "debug-modules" {
 
 module "cert-manager" {
   count  = local.modules.cert-manager.enabled ? 1 : 0
-  source = "github.com/getupcloud/terraform-module-cert-manager?ref=v2.0.0-alpha1"
+  source = "github.com/getupcloud/terraform-module-cert-manager?ref=v2.0.0-alpha2"
 
   cluster_name  = var.cluster_name
   customer_name = var.customer_name
@@ -20,11 +20,11 @@ module "cert-manager" {
 
 module "velero" {
   count  = local.modules.velero.enabled ? 1 : 0
-  source = "github.com/getupcloud/terraform-module-velero?ref=v2.0.0-alpha1"
+  source = "github.com/getupcloud/terraform-module-velero?ref=v2.0.0-alpha3"
 
-  cluster_name            = module.cluster.cluster_id
-  customer_name           = var.customer_name
-  provider                = var.cluster_provider
+  cluster_name  = var.cluster_name
+  customer_name = var.customer_name
+  provider_name = var.cluster_provider
   provider_aws = {
     bucket_name = local.modules.velero.bucket_name
   }
