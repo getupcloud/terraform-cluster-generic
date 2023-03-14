@@ -10,7 +10,7 @@ locals {
   secret = random_string.secret.result
 
   modules_result = {
-    for name, config in var.modules : name => merge(config, {
+    for name, config in merge(var.modules, local.modules) : name => merge(config, {
       output : config.enabled ? lookup(local.register_modules, name, try(config.output, tomap({}))) : tomap({})
     })
   }
