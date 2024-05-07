@@ -101,6 +101,18 @@ variable "manifests_template_vars" {
   }
 }
 
+variable "cronitor_id" {
+  description = "Cronitor Monitor ID (6 chars key)."
+  type        = string
+  default     = ""
+}
+
+variable "opsgenie_integration_api_key" {
+  description = "Opsgenie integration API key to send alerts."
+  type        = string
+  default     = ""
+}
+
 variable "modules" {
   description = "Configure modules to install"
   type        = any
