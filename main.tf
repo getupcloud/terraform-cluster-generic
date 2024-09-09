@@ -14,7 +14,7 @@ module "teleport-agent" {
 }
 
 module "flux" {
-  source = "github.com/getupcloud/terraform-module-flux?ref=v2.5.1"
+  source = "github.com/getupcloud/terraform-module-flux?ref=v2.6.0"
 
   git_repo                = var.flux_git_repo
   manifests_path          = "./clusters/${var.cluster_name}/${var.cluster_type}/manifests"
