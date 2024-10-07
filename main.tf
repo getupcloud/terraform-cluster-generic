@@ -20,8 +20,10 @@ module "flux" {
   manifests_path          = "./clusters/${var.cluster_name}/${var.cluster_type}/manifests"
   wait                    = var.flux_wait
   flux_version            = var.flux_version
-  flux_install_file       = var.flux_install_file
   manifests_template_vars = local.manifests_template_vars
+  flux_install_file       = var.flux_install_file
+  identity_file           = var.flux_identity_file
+  identity_pub_file       = var.flux_identity_pub_file
   debug                   = var.dump_debug
   install_on_okd          = var.install_on_okd
 }
